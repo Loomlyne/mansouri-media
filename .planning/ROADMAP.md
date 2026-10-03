@@ -45,7 +45,7 @@ These are inputs only Houssem or Koss can give. Each blocks a named phase; none 
 
 | # | Item | Owner | Blocks |
 |---|------|-------|--------|
-| 1 | Houssem's Cloudflare account; domain mansourimedia.com on it; separate wrangler login for Koss on a dedicated HOME | Houssem, Koss | Phase 1 live deploy |
+| 1 | Houssem's Cloudflare account "Houssam Portfolio" + separate wrangler login (done 2026-10-03); domain mansourimedia.com deferred — site on workers.dev until bought | Koss | Phase 1 done; domain before launch if possible |
 | 2 | Sending domain mansourimedia.com added and verified in Koss's Resend account (DNS records on Houssem's zone) | Koss | Phase 5 emails |
 | 3 | Houssem's Stripe account and his UAE eligibility (trade licence / business) | Houssem | Phase 7 |
 | 4 | Film source files (web-ready MP4s) and which Vimeo films go in v1, incl. private folders | Houssem | Phase 2 real data, Phase 3 uploads |
