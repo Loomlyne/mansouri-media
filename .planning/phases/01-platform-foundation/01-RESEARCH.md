@@ -629,13 +629,13 @@ curl -s -o /dev/null -w '%{http_code}\n' https://mansourimedia.<sub>.workers.dev
 | A7 | Workers Logs invocation logs expose per-request CPU (limits page says "CPU time and wall time appear in the invocation log"); the exact query field name was not read | Validation | Use the dashboard Metrics/Logs view instead. |
 | A8 | Unchecked dev packages (tailwind, vitest, playwright, fonts) are legitimate | Package audit | Low; same as sister project. |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **workers.dev subdomain string.** The public URL becomes `mansourimedia.<subdomain>.workers.dev`. Not readable from here without an API call; set or read in the dashboard (Workers & Pages → "Your subdomain" → Change) or `GET /accounts/{account_id}/workers/subdomain`. Recommendation: Koss picks it (it is public, and changing it later breaks links); human step 1.
-2. **"cached" in success criterion 2.** On workers.dev with no Workers Cache, there is no edge cache in front of the Worker: "cold and cached" can only mean "first request and repeat request both return 206" (plus browser cache). Recommendation: record it that way in UAT; Workers Cache stays a later lever.
-3. **Probe objects in the production bucket.** `/media/_probe/*` (generated test pattern, no client content) is reachable by URL though not linked. D-06 says nothing else public. Recommendation: keep them unlinked and delete or keep at Koss's word after UAT.
-4. **First push of `main`.** Workers Builds deploys on push to `main`, and pushing `main` = shipping (D-09). The scaffold must reach `main` before the Worker can be imported from Git, so the first ship gate comes early in this phase; the plan should place Koss's Ship answer before that push.
-5. **Admin email.** D-02 lists `koussayzayeni@gmail.com` "exactly as Koss typed it"; his usual address elsewhere is `koussay.zayani0@gmail.com`. The policy will lock out a mistyped address; Koss confirms when creating the policy.
+1. **RESOLVED — by plan 01-03 Task 2 (Koss reads or sets the subdomain in the dashboard; recorded as `SUBDOMAIN` / `SITE_URL`).** **workers.dev subdomain string.** The public URL becomes `mansourimedia.<subdomain>.workers.dev`. Not readable from here without an API call; set or read in the dashboard (Workers & Pages → "Your subdomain" → Change) or `GET /accounts/{account_id}/workers/subdomain`. Recommendation: Koss picks it (it is public, and changing it later breaks links); human step 1.
+2. **RESOLVED — Koss's answer 2026-10-03: first and repeat request both return 206 from the Worker (plus browser cache); no Workers Cache in Phase 1; edge caching waits for the real domain. Acceptance in 01-05 Task 3, 01-07 Task 2, 01-10 Task 2 (Media lab checks) and the 01-12 evidence map.** **"cached" in success criterion 2.** On workers.dev with no Workers Cache, there is no edge cache in front of the Worker: "cold and cached" can only mean "first request and repeat request both return 206" (plus browser cache). Recommendation: record it that way in UAT; Workers Cache stays a later lever.
+3. **RESOLVED (deferred to Koss by design) — open for Koss in plan 01-12 Task 2 (checkpoint:decision keep / delete), applied in 01-12 Task 3.** **Probe objects in the production bucket.** `/media/_probe/*` (generated test pattern, no client content) is reachable by URL though not linked. D-06 says nothing else public. Recommendation: keep them unlinked and delete or keep at Koss's word after UAT.
+4. **RESOLVED — plan 01-06 (Koss's Ship answer in Task 2 before the push in Task 3; rollback tag `pre-phase-01-ship-1` pushed before main).** **First push of `main`.** Workers Builds deploys on push to `main`, and pushing `main` = shipping (D-09). The scaffold must reach `main` before the Worker can be imported from Git, so the first ship gate comes early in this phase; the plan should place Koss's Ship answer before that push.
+5. **RESOLVED — Koss confirmed `koussayzayeni@gmail.com` as typed (2026-10-03); plan 01-08 Task 2 uses it in the Access policy and plan 01-09 Task 1 in `ADMIN_EMAILS`.** **Admin email.** D-02 lists `koussayzayeni@gmail.com` "exactly as Koss typed it"; his usual address elsewhere is `koussay.zayani0@gmail.com`. The policy will lock out a mistyped address; Koss confirms when creating the policy.
 
 ## Environment Availability
 
@@ -681,7 +681,7 @@ Resource creation (`d1 create`, `r2 bucket create`, migrations, `r2 object put`)
 | PLAT-01 | Guard refuses wrong `account_id`, wrong HOME, foreign accounts in whoami | unit | `npx vitest run tests/cf-guard.test.ts` (whoami stubbed) | ❌ Wave 0 |
 | PLAT-01 | Build log prints `cf-guard OK: Houssam Portfolio (1c850e50…)` before deploy | manual (Workers Builds log) + curl | `curl -sI https://mansourimedia.<sub>.workers.dev/en` → 200 | ❌ |
 | PLAT-01 | EN/AR/FR holding page: `lang`, `dir="rtl"` for ar, WhatsApp `wa.me/971505085753`, `mailto:houssemansouri96@gmail.com` | e2e | `npx playwright test e2e/holding.spec.ts` | ❌ Wave 0 |
-| PLAT-02 | Range parsing → 206/416/304/200 headers | unit (R2 stub) | `npx vitest run tests/media.test.ts` | ❌ Wave 0 |
+| PLAT-02 | Range parsing → 206/416/304/200 headers | unit (real R2 in Miniflare) | `npx vitest run --project workers tests/workers/media.test.ts` | ❌ Wave 0 |
 | PLAT-02 | Live 206 cold + repeat, 416, 304 | live smoke | `bash scripts/verify-live.sh <url>` (curl lines above) | ❌ Wave 0 |
 | PLAT-02 | Poster texture uploads in WebGL, video seeks | e2e behind Access (manual login) | Playwright on local `opennextjs-cloudflare preview` + manual on live `/admin/lab` | ❌ |
 | PLAT-03 | Same tables in local / preview / prod | live read-back | `scripts/wr.sh d1 migrations list <db> --local|--remote` and `d1 execute … sqlite_master` per DB | ❌ |
@@ -696,7 +696,7 @@ Resource creation (`d1 create`, `r2 bucket create`, migrations, `r2 object put`)
 - **Phase gate:** full suite + `verify-live.sh` on production and one branch Preview, then `/gsd-verify-work`
 
 ### Wave 0 Gaps
-- [ ] `vitest.config.ts`, `tests/access.test.ts`, `tests/media.test.ts`, `tests/cf-guard.test.ts`, `tests/wrangler-config.test.ts`
+- [ ] `vitest.config.ts`, `tests/access.test.ts`, `tests/workers/media.test.ts`, `tests/cf-guard.test.ts`, `tests/wrangler-config.test.ts`
 - [ ] `playwright.config.ts` (desktop + Pixel 7 + iPhone 15 projects), `e2e/holding.spec.ts`
 - [ ] `scripts/verify-live.sh` (curl checks, exits non-zero on any mismatch)
 - [ ] Test media: `scripts/make-probe-media.sh` (ffmpeg test pattern + WebP poster, faststart)
