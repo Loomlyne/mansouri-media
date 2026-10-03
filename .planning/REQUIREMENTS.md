@@ -7,11 +7,11 @@
 
 ### Platform (PLAT)
 
-- [ ] **PLAT-01**: The site is served from a Cloudflare Worker in Houssem's own Cloudflare account at https://mansourimedia.com, with `wrangler.jsonc` pinned to his `account_id` and a separate wrangler login (never the default Vamos login); every deploy runs a `wrangler whoami` check first
-- [ ] **PLAT-02**: Films and posters are served from an R2 bucket on `media.mansourimedia.com`; a seek in a film returns HTTP 206 from the live domain, cold and cached, and posters load into WebGL without CORS errors
+- [ ] **PLAT-01**: The site is served from a Cloudflare Worker named `mansourimedia` in Houssem's Cloudflare account ("Houssam Portfolio") at its workers.dev address (mansourimedia.com later, when bought), with `wrangler.jsonc` pinned to his `account_id` and a separate wrangler login (never the default Vamos login); every deploy runs a `wrangler whoami` check first
+- [ ] **PLAT-02**: Films and posters are stored in R2 and served by the Worker (not r2.dev); a seek in a film returns HTTP 206 from the live address, cold and cached, and posters load into WebGL without CORS errors
 - [ ] **PLAT-03**: Data lives in D1 with versioned migrations, separate local / preview / production databases
 - [ ] **PLAT-04**: The site runs on the Workers Free plan: public pages are pre-rendered, API handlers stay under the CPU limit, measured on the first deploy
-- [ ] **PLAT-05**: `workers.dev` and preview URLs are off or behind Access, so /admin is never reachable without Access
+- [ ] **PLAT-05**: /admin and admin APIs are behind Access on the workers.dev address and refuse any request without a valid Access token, including on public branch previews
 
 ### Carousel (CARO)
 

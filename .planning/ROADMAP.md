@@ -60,15 +60,15 @@ These are inputs only Houssem or Koss can give. Each blocks a named phase; none 
 ## Phase Details
 
 ### Phase 1: Platform Foundation
-**Goal**: A skeleton site is live at mansourimedia.com from Houssem's own Cloudflare account, with D1, R2 media and Access wired, and it fits the Workers Free plan
+**Goal**: A skeleton site (holding page) is live at its workers.dev address from Houssem's Cloudflare account, with D1, R2 media and Access wired, and it fits the Workers Free plan
 **Mode:** mvp
 **Depends on**: Nothing (first phase)
 **Requirements**: PLAT-01, PLAT-02, PLAT-03, PLAT-04, PLAT-05
 **Success Criteria** (what must be TRUE):
-  1. Opening https://mansourimedia.com shows the skeleton page served by a Worker in Houssem's account, and every deploy prints a `wrangler whoami` check naming his account first (never the Vamos account)
-  2. A test film on media.mansourimedia.com can be seeked in the browser: the live domain answers HTTP 206, cold and cached, and a poster loads into a WebGL test page with no CORS error
+  1. Opening the workers.dev address shows the EN/AR/FR holding page served by the `mansourimedia` Worker in the "Houssam Portfolio" account, deployed by Workers Builds from GitHub, and every deploy prints a `wrangler whoami` check naming his account first (never the Vamos account)
+  2. A test film served by the Worker from R2 can be seeked in the browser: the live address answers HTTP 206, cold and cached, and a poster loads into a WebGL test page with no CORS error
   3. Local, preview and production each have their own D1 database, and a migration applied from the repo shows the same tables in each
-  4. The workers.dev and preview URLs either do not answer or ask for Access; /admin is unreachable without Access from any URL
+  4. /admin asks for Access on the workers.dev address and is unreachable without a valid Access token from any URL, including public branch previews
   5. The first deploy's measured CPU time per request is recorded and stays under the Free plan limit
 **Plans**: TBD
 
