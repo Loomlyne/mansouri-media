@@ -1,0 +1,1 @@
+Upstream: https://github.com/Yousuf-developer/liquid-glass-carousel @ 6d770c9fec06c277f0494e7640dbaa7794ed6c9f (MIT, Yousuf Soomro). Demo images (Behance, not licensed) and font.woff (Lay Grotesk, Due Studio, commercial) removed.

@@ -1,0 +1,9 @@
+_source/
+node_modules/
+.next/
+.open-next/
+.wrangler/
+.dev.vars
+.env*
+!.env.example
+.DS_Store
