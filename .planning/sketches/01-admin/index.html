@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mansouri Media — admin test pages (phase 1) sketches</title>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --plum:#251B26; --gold:#C48C3C; --muted:#6f6470; --line:#ece7ec; --ok:#2f7a4b; --bad:#a83232; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Host Grotesk",system-ui,sans-serif; color:var(--plum); background:#fff; -webkit-font-smoothing:antialiased; }
+  .chrome { position:fixed; z-index:50; bottom:12px; left:50%; transform:translateX(-50%); display:flex; gap:6px; background:#111; color:#fff; padding:6px; border-radius:999px; font:12px/1 system-ui; }
+  .chrome button { background:transparent; color:#fff; border:0; padding:8px 12px; border-radius:999px; cursor:pointer; font:inherit; }
+  .chrome button.on { background:#fff; color:#111; }
+  .page { display:none; min-height:100svh; }
+  .page.on { display:block; }
+
+  .top { display:flex; justify-content:space-between; align-items:center; padding:18px clamp(16px,4vw,40px); border-bottom:1px solid var(--line); }
+  .top img { width:120px; height:auto; }
+  .top nav { display:flex; gap:20px; font-size:14px; }
+  .top nav a { color:var(--muted); text-decoration:none; }
+  .top nav a.on { color:var(--plum); font-weight:500; }
+  .who { font-size:12px; color:var(--muted); }
+  .badge { display:inline-block; font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:4px 8px; border-radius:999px; background:#f6efe4; color:#8a6025; margin-inline-start:10px; }
+
+  main { max-width:960px; margin:0 auto; padding:40px clamp(16px,4vw,40px) 120px; }
+  h1 { font-size:28px; font-weight:600; letter-spacing:-.01em; }
+  .lede { color:var(--muted); margin-top:6px; font-size:15px; }
+  .card { border:1px solid var(--line); border-radius:16px; padding:24px; margin-top:28px; }
+  .card h2 { font-size:16px; font-weight:600; }
+  .card p.sub { color:var(--muted); font-size:14px; margin-top:4px; }
+  .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:18px; }
+  .btn { height:44px; padding:0 20px; border-radius:999px; border:0; background:var(--gold); color:#fff; font:500 14px "Host Grotesk",sans-serif; cursor:pointer; }
+  .btn.ghost { background:transparent; border:1px solid var(--plum); color:var(--plum); }
+  table { width:100%; border-collapse:collapse; margin-top:18px; font-size:14px; }
+  th, td { text-align:start; padding:10px 8px; border-bottom:1px solid var(--line); }
+  th { color:var(--muted); font-weight:500; font-size:12px; letter-spacing:.06em; text-transform:uppercase; }
+  .ok { color:var(--ok); font-weight:500; } .bad { color:var(--bad); font-weight:500; }
+  .kv { display:grid; grid-template-columns:160px 1fr; gap:8px 16px; margin-top:16px; font-size:14px; }
+  .kv dt { color:var(--muted); } .kv dd { font-family:ui-monospace,Menlo,monospace; font-size:13px; }
+
+  .lab { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:28px; }
+  @media (max-width:760px){ .lab { grid-template-columns:1fr; } .kv { grid-template-columns:1fr; } }
+  .stage { aspect-ratio:9/16; max-height:560px; width:100%; border-radius:14px; background:#f4f1f4; display:grid; place-items:center; overflow:hidden; position:relative; }
+  .stage canvas, .stage video { width:100%; height:100%; object-fit:contain; display:block; }
+  .fake-poster { width:100%; height:100%; background:
+      linear-gradient(135deg, rgba(196,140,60,.85), rgba(37,27,38,.9)),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.12) 0 2px, transparent 2px 24px); }
+  .fake-poster::after { content:"probe poster (WebGL texture)"; position:absolute; inset:auto 0 16px; text-align:center; color:#fff; font-size:12px; letter-spacing:.06em; }
+  .fake-video { width:100%; height:100%; background:#111; position:relative; }
+  .fake-video .bar { position:absolute; left:16px; right:16px; bottom:18px; height:4px; background:rgba(255,255,255,.25); border-radius:2px; }
+  .fake-video .bar i { position:absolute; inset:0 auto 0 0; width:62%; background:var(--gold); border-radius:2px; }
+  .fake-video .t { position:absolute; left:16px; bottom:30px; color:#fff; font:12px ui-monospace,Menlo,monospace; }
+  .checks { list-style:none; margin-top:14px; font-size:14px; display:grid; gap:8px; }
+  .checks li::before { content:"✓ "; color:var(--ok); font-weight:600; }
+  .checks li.wait::before { content:"… "; color:var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- /admin -->
+<section class="page on" id="admin">
+  <header class="top">
+    <div style="display:flex;align-items:center;gap:14px"><img src="../01-holding/assets/logo-plum.png" alt="Mansouri Media"><span class="badge">Test page · phase 1</span></div>
+    <nav><a class="on" href="#">System check</a><a href="#" data-go="lab">Media lab</a></nav>
+    <span class="who">Signed in as houssemansouri96@gmail.com</span>
+  </header>
+  <main>
+    <h1>System check</h1>
+    <p class="lede">Proves the admin login and the database work. Replaced by the real admin in phase 3.</p>
+
+    <div class="card">
+      <h2>Login</h2>
+      <p class="sub">Checked by Cloudflare Access and again by the site on every admin request.</p>
+      <dl class="kv">
+        <dt>Signed-in email</dt><dd>houssemansouri96@gmail.com</dd>
+        <dt>Access token</dt><dd class="ok">valid · expires in 23 h 41 min</dd>
+        <dt>Environment</dt><dd>production · account Houssam Portfolio</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <h2>Database</h2>
+      <p class="sub">Writes one check row, then reads the last five back.</p>
+      <div class="row"><button class="btn">Run check</button><span class="ok">Saved and read back in 38 ms</span></div>
+      <table>
+        <thead><tr><th>When (Dubai)</th><th>By</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>03 Oct 2026, 21:42</td><td>houssemansouri96@gmail.com</td><td class="ok">ok</td></tr>
+          <tr><td>03 Oct 2026, 21:40</td><td>koussayzayeni@gmail.com</td><td class="ok">ok</td></tr>
+          <tr><td>03 Oct 2026, 21:12</td><td>koussayzayeni@gmail.com</td><td class="ok">ok</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</section>
+
+<!-- /admin/lab -->
+<section class="page" id="lab">
+  <header class="top">
+    <div style="display:flex;align-items:center;gap:14px"><img src="../01-holding/assets/logo-plum.png" alt="Mansouri Media"><span class="badge">Test page · phase 1</span></div>
+    <nav><a href="#" data-go="admin">System check</a><a class="on" href="#">Media lab</a></nav>
+    <span class="who">Signed in as koussayzayeni@gmail.com</span>
+  </header>
+  <main>
+    <h1>Media lab</h1>
+    <p class="lede">Proves films and posters come from storage correctly: the poster loads into WebGL and the film can be seeked.</p>
+    <div class="lab">
+      <div>
+        <div class="stage"><div class="fake-poster"></div></div>
+        <ul class="checks">
+          <li>Poster loaded into WebGL (no CORS error)</li>
+          <li>Size 720 × 1280, WebP</li>
+        </ul>
+      </div>
+      <div>
+        <div class="stage"><div class="fake-video"><span class="t">00:06 / 00:10</span><div class="bar"><i></i></div></div></div>
+        <div class="row"><button class="btn ghost">Jump to 0:06</button><button class="btn ghost">Play</button></div>
+        <ul class="checks">
+          <li>Seek answered 206 Partial Content</li>
+          <li>Repeat request answered 206</li>
+          <li class="wait">Bytes 1,048,576–2,097,151 of 3,412,880</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</section>
+
+<div class="chrome"><button data-p="admin" class="on">/admin</button><button data-p="lab">/admin/lab</button></div>
+<script>
+function go(p){ document.querySelectorAll(".page").forEach(s=>s.classList.toggle("on",s.id===p)); document.querySelectorAll("[data-p]").forEach(b=>b.classList.toggle("on",b.dataset.p===p)); }
+document.addEventListener("click",e=>{ const b=e.target.closest("[data-p],[data-go]"); if(!b) return; e.preventDefault(); go(b.dataset.p||b.dataset.go); });
+const q=new URLSearchParams(location.search); go(q.get("p")||"admin"); if(q.has("clean")) document.querySelector(".chrome").remove();
+</script>
+</body>
+</html>
