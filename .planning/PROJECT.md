@@ -20,13 +20,13 @@ A brand in the GCC can watch Houssem's vertical films in the glass carousel and 
 - [ ] Focus view plays the clicked film (vertical full-height), poster stills in the ring
 - [ ] Full mobile experience: touch carousel with the same look, lighter shader, full booking
 - [ ] Industry filters: All / Fashion / Beauty & clinics / Real estate / Products / Ads / Content
-- [ ] Client brand logos section (layout explored in sketches)
+- [ ] Client brand logos section headed "Brands I've filmed for" (layout explored in sketches)
 - [ ] Influencer/creator section using the Drive photos (layout explored in sketches)
 - [ ] Six services: ads management, social media, scriptwriting/filming/editing, web & app development, PR, influencers
 - [ ] Industries list, slogan "WE MAKE YOUR VIDEOS REMEMBERED.", CTAs "Start your project" and "WhatsApp us"
 - [ ] Booking: free discovery call, shoot date request (service + date + location), paid deposit
-- [ ] Bookings stored in Cloudflare D1; confirmation emails to visitor and Houssem via Resend
-- [ ] Paid deposit through Stripe Connect (Koss's platform, Houssem connected Express account, Koss's commission as application fee)
+- [ ] Bookings stored in Cloudflare D1; confirmation emails to visitor and Houssem via Resend (Koss's Resend account)
+- [ ] Paid deposit after Houssem quotes: card payment link on Houssem's own Stripe account, payout to his bank, no commission
 - [ ] Private /admin behind Cloudflare Access (email code): upload video/photo to R2 with title/client/industry, see bookings, block time
 - [ ] English, Arabic (RTL) and French; Claude drafts AR/FR, Houssem checks
 - [ ] Results numbers section shown only when Houssem provides proof
@@ -34,6 +34,7 @@ A brand in the GCC can watch Houssem's vertical films in the glass carousel and 
 
 ### Out of Scope
 
+- Stripe Connect / commission split — UAE platform restrictions; Koss chose Houssem's own Stripe, no commission
 - Notion as booking store — D1 chosen; keeps everything on Cloudflare and needs no Notion account for Houssem
 - Cloudflare Stream — R2 MP4 + poster chosen (no per-minute cost); revisit if playback on poor mobile data is a problem
 - Lay Grotesk (reference font) — commercial licence; free look-alike instead
@@ -58,7 +59,8 @@ A brand in the GCC can watch Houssem's vertical films in the glass carousel and 
 - **Content**: most work is vertical 9:16; every surface must show vertical video well
 - **Honesty**: no invented numbers, testimonials, prices or legal copy; results only with proof; deposit amounts and commission % come from Koss
 - **Languages**: EN / AR (RTL) / FR from the first version
-- **Payments**: Stripe Connect; Houssem must agree to the platform fee before deposits go live
+- **Payments**: Houssem's own Stripe account; no Connect, no commission; deposit only after a quote
+- **Workers plan**: Free plan for now — static pages, tiny handlers; Paid later if CPU limits hit
 - **Admin**: Cloudflare Access email one-time code; no password store
 - **Process**: GSD; Koss signs discuss, plan, UAT and ship
 
@@ -71,7 +73,10 @@ A brand in the GCC can watch Houssem's vertical films in the glass carousel and 
 | Poster stills in the ring, film plays in focus view | Light and fast; vertical films shown full-height | — Pending |
 | Full mobile version | Visitors come from Instagram on phones | — Pending |
 | D1 + Resend for bookings | All on Cloudflare; no Notion account needed | — Pending |
-| Stripe Connect with Koss as platform | Houssem gets paid directly; Koss's commission as application fee | — Pending |
+| Deposits on Houssem's own Stripe, no Connect, no commission | Stripe Connect in UAE needs sales contact and makes Koss merchant of record (research 2026-10-03) | — Pending |
+| Workers Free plan for now | Keep cost zero at launch; move to Paid if CPU limits hit | — Pending |
+| Koss's Resend account sends emails | Koss's call | — Pending |
+| Logos headed "Brands I've filmed for" | Many brands came through his employers | — Pending |
 | R2 MP4 + poster, no Stream | No egress or per-minute cost | — Pending |
 | Cloudflare Access for /admin | No password to leak; free | — Pending |
 | Use the Drive influencer photos as given | Koss's call (photographer copyright noted) | — Pending |
@@ -81,8 +86,8 @@ A brand in the GCC can watch Houssem's vertical films in the glass carousel and 
 
 ## Open (do not invent)
 
-1. Deposit amounts, which services take a deposit, commission % — pricing discussion with Koss.
-2. Houssem's agreement to the platform fee.
+1. Deposit amounts, which services take a deposit, refund copy — pricing discussion with Koss.
+2. Houssem's Stripe UAE eligibility (trade licence).
 3. Proof for results numbers.
 4. Logo and influencer section layout — sketch directions.
 5. Which Vimeo films go in v1, and the source files.

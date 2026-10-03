@@ -32,7 +32,10 @@ Input for `/gsd-new-project`. Decisions are Koss's answers of 2026-10-03; open i
 | Results numbers | 40+ brands, 400M+ impressions, 3x ROI, 0→1M followers: shown **only with proof** from Houssem; section stays out until then |
 | Booking | Visitor picks any of three: free discovery call · shoot date request (service + date + location → he quotes) · paid deposit |
 | Booking store | Cloudflare D1 + Resend (not Notion). Flow modelled on Koussay-Portfolio's `/booking` |
-| Payments | Stripe Connect: Koss's Stripe = platform, Houssem = connected Express account, Koss's commission = application fee. Houssem must agree to the fee |
+| Payments | Houssem's own Stripe account, payout to his bank, no Connect, no commission (changed after research 2026-10-03) |
+| Workers plan | Free for now, Paid later |
+| Resend | Koss's account |
+| Logo heading | "Brands I've filmed for" |
 | Video hosting | R2: MP4 1080×1920 H.264 + poster frame per film, Houssem exports web-ready |
 | Uploads | Private `/admin`: upload video/photo → R2, set title/client/industry; bookings + blocked time also there |
 | Admin login | Cloudflare Access, one-time email code to his Gmail |
