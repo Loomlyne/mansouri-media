@@ -109,10 +109,61 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (filled by roadmap) | | |
+| PLAT-01 | Phase 1 | Pending |
+| PLAT-02 | Phase 1 | Pending |
+| PLAT-03 | Phase 1 | Pending |
+| PLAT-04 | Phase 1 | Pending |
+| PLAT-05 | Phase 1 | Pending |
+| CARO-01 | Phase 2 | Pending |
+| CARO-02 | Phase 2 | Pending |
+| CARO-03 | Phase 2 | Pending |
+| CARO-04 | Phase 2 | Pending |
+| CARO-05 | Phase 2 | Pending |
+| CARO-06 | Phase 2 | Pending |
+| CARO-07 | Phase 2 | Pending |
+| CARO-08 | Phase 2 | Pending |
+| PLAY-01 | Phase 2 | Pending |
+| PLAY-02 | Phase 2 | Pending |
+| PLAY-03 | Phase 2 | Pending |
+| PLAY-04 | Phase 4 | Pending |
+| PLAY-05 | Phase 5 | Pending |
+| CONT-01 | Phase 4 | Pending |
+| CONT-02 | Phase 4 | Pending |
+| CONT-03 | Phase 4 | Pending |
+| CONT-04 | Phase 4 | Pending |
+| CONT-05 | Phase 5 | Pending |
+| CONT-06 | Phase 4 | Pending |
+| CONT-07 | Phase 4 | Pending |
+| I18N-01 | Phase 4 | Pending |
+| I18N-02 | Phase 4 | Pending |
+| I18N-03 | Phase 4 | Pending |
+| I18N-04 | Phase 4 | Pending |
+| BOOK-01 | Phase 5 | Pending |
+| BOOK-02 | Phase 5 | Pending |
+| BOOK-03 | Phase 5 | Pending |
+| BOOK-04 | Phase 5 | Pending |
+| BOOK-05 | Phase 5 | Pending |
+| BOOK-06 | Phase 5 | Pending |
+| BOOK-07 | Phase 5 | Pending |
+| PAY-01 | Phase 7 | Pending |
+| PAY-02 | Phase 7 | Pending |
+| PAY-03 | Phase 7 | Pending |
+| ADMN-01 | Phase 3 | Pending |
+| ADMN-02 | Phase 3 | Pending |
+| ADMN-03 | Phase 3 | Pending |
+| ADMN-04 | Phase 3 | Pending |
+| ADMN-05 | Phase 5 | Pending |
+| ADMN-06 | Phase 5 | Pending |
+| ADMN-07 | Phase 3 | Pending |
+| LAUN-01 | Phase 6 | Pending |
+| LAUN-02 | Phase 6 | Pending |
+| LAUN-03 | Phase 6 | Pending |
 
-**Coverage:** 49 v1 requirements
+**Coverage:**
+- v1 requirements: 49 total
+- Mapped to phases: 49
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-10-03*
-*Last updated: 2026-10-03 after initial definition*
+*Last updated: 2026-10-03 after roadmap creation*
