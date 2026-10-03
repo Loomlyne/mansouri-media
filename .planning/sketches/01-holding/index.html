@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mansouri Media — holding page sketches</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --plum:#251B26; --plum-2:#0E070F; --gold:#C48C3C; --white:#fff; --muted:#6f6470; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { height:100%; }
+  body { font-family:"Host Grotesk",system-ui,sans-serif; color:var(--plum); background:var(--white); -webkit-font-smoothing:antialiased; }
+  html[lang="ar"] body { font-family:"IBM Plex Sans Arabic","Host Grotesk",sans-serif; }
+
+  /* sketch chrome (not part of the design) */
+  .chrome { position:fixed; z-index:50; bottom:12px; left:50%; transform:translateX(-50%); display:flex; gap:6px; background:#111; color:#fff; padding:6px; border-radius:999px; font:12px/1 system-ui; direction:ltr; }
+  .chrome button { background:transparent; color:#fff; border:0; padding:8px 12px; border-radius:999px; cursor:pointer; font:inherit; }
+  .chrome button.on { background:#fff; color:#111; }
+  .chrome .sep { width:1px; background:#444; margin:4px 2px; }
+
+  .variant { display:none; min-height:100svh; }
+  .variant.on { display:flex; }
+
+  .lang { display:flex; gap:14px; font-size:13px; letter-spacing:.04em; }
+  .lang a { color:var(--muted); text-decoration:none; }
+  .lang a.on { color:var(--plum); }
+  html[lang="ar"] .lang { letter-spacing:0; }
+
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; height:52px; padding:0 26px; border-radius:999px; font-size:15px; font-weight:500; text-decoration:none; transition:transform .2s ease, background .2s ease, color .2s ease; white-space:nowrap; }
+  .btn:active { transform:scale(.98); }
+  .btn svg { width:18px; height:18px; flex:none; }
+  .btn-gold { background:var(--gold); color:#fff; }
+  .btn-gold:hover { background:#b07d33; }
+  .btn-line { border:1px solid var(--plum); color:var(--plum); }
+  .btn-line:hover { background:var(--plum); color:#fff; }
+  .btn-plum { background:var(--plum); color:#fff; }
+
+  .slogan-en { text-transform:uppercase; }
+  html[lang="ar"] .slogan-en { text-transform:none; }
+
+  /* ---------- A: centred minimal ---------- */
+  #A { flex-direction:column; align-items:center; justify-content:space-between; padding:28px 24px 96px; }
+  #A header { width:100%; display:flex; justify-content:flex-end; }
+  #A main { display:flex; flex-direction:column; align-items:center; text-align:center; gap:36px; }
+  #A .logo { width:min(420px,78vw); height:auto; }
+  #A .slogan { font-size:clamp(13px,1.6vw,15px); letter-spacing:.32em; font-weight:400; }
+  html[lang="ar"] #A .slogan { letter-spacing:0; font-size:18px; }
+  #A .ctas { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+  #A footer { font-size:12px; color:var(--muted); letter-spacing:.08em; }
+
+  /* ---------- B: editorial ---------- */
+  #B { flex-direction:column; justify-content:space-between; padding:28px clamp(20px,5vw,72px) 96px; }
+  #B header { display:flex; justify-content:space-between; align-items:center; }
+  #B .logo { width:150px; height:auto; }
+  #B h1 { font-size:clamp(44px,10.5vw,168px); line-height:.92; font-weight:600; letter-spacing:-.035em; max-width:12ch; }
+  html[lang="ar"] #B h1 { letter-spacing:0; line-height:1.2; font-weight:600; }
+  html[lang="fr"] #B h1 { font-size:clamp(38px,8.6vw,140px); }
+  #B h1 .sq { display:inline-block; width:.16em; height:.16em; background:var(--gold); margin-inline-start:.06em; vertical-align:.62em; }
+  #B .bottom { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; border-top:1px solid #e7e2e7; padding-top:22px; }
+  #B .meta { font-size:13px; color:var(--muted); line-height:1.6; }
+  #B .ctas { display:flex; gap:12px; flex-wrap:wrap; }
+
+  /* ---------- C: glass ring teaser ---------- */
+  #C { flex-direction:column; align-items:center; justify-content:space-between; padding:28px 24px 96px; overflow:hidden; position:relative; }
+  #C header { width:100%; display:flex; justify-content:flex-end; position:relative; z-index:2; }
+  #C .stage { position:relative; width:min(560px,86vw); aspect-ratio:1; display:grid; place-items:center; }
+  #C .ring { position:absolute; inset:0; border-radius:50%;
+    background: conic-gradient(from 0deg, rgba(196,140,60,.0), rgba(196,140,60,.55), rgba(255,255,255,.9), rgba(196,140,60,.35), rgba(196,140,60,0) 60%, rgba(196,140,60,.5), rgba(196,140,60,0));
+    -webkit-mask: radial-gradient(circle, transparent 66%, #000 67.2%, #000 69%, transparent 70.5%);
+            mask: radial-gradient(circle, transparent 66%, #000 67.2%, #000 69%, transparent 70.5%);
+    filter: blur(.6px); animation: spin 14s linear infinite; }
+  #C .glow { position:absolute; inset:14%; border-radius:50%; background: radial-gradient(circle, rgba(196,140,60,.10), rgba(196,140,60,0) 68%); }
+  #C .rim { position:absolute; inset:2.4%; border-radius:50%; border:1px solid rgba(37,27,38,.08); }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { #C .ring { animation:none; } }
+  #C .inner { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap:26px; text-align:center; }
+  #C .logo { width:min(300px,56vw); height:auto; }
+  #C .slogan { font-size:clamp(12px,1.4vw,14px); letter-spacing:.3em; }
+  html[lang="ar"] #C .slogan { letter-spacing:0; font-size:17px; }
+  #C .ctas { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; position:relative; z-index:2; }
+  #C footer { font-size:12px; color:var(--muted); letter-spacing:.08em; position:relative; z-index:2; }
+</style>
+</head>
+<body>
+
+<!-- A: centred minimal -->
+<section class="variant on" id="A">
+  <header><nav class="lang"></nav></header>
+  <main>
+    <img class="logo" src="assets/logo-plum.png" alt="Mansouri Media">
+    <p class="slogan slogan-en" data-t="slogan"></p>
+    <div class="ctas">
+      <a class="btn btn-gold" data-wa target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2 .7 2.8.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3Z"/></svg><span data-t="wa"></span></a>
+      <a class="btn btn-line" data-mail><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><span data-t="mail"></span></a>
+    </div>
+  </main>
+  <footer data-t="place"></footer>
+</section>
+
+<!-- B: editorial -->
+<section class="variant" id="B">
+  <header><img class="logo" src="assets/logo-plum.png" alt="Mansouri Media"><nav class="lang"></nav></header>
+  <h1 class="slogan-en"><span data-t="slogan"></span><span class="sq" aria-hidden="true"></span></h1>
+  <div class="bottom">
+    <p class="meta"><span data-t="place"></span></p>
+    <div class="ctas">
+      <a class="btn btn-plum" data-wa target="_blank" rel="noopener"><span data-t="wa"></span></a>
+      <a class="btn btn-line" data-mail><span data-t="mail"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- C: glass ring teaser -->
+<section class="variant" id="C">
+  <header><nav class="lang"></nav></header>
+  <div class="stage">
+    <div class="glow"></div><div class="rim"></div><div class="ring"></div>
+    <div class="inner">
+      <img class="logo" src="assets/logo-plum.png" alt="Mansouri Media">
+      <p class="slogan slogan-en" data-t="slogan"></p>
+    </div>
+  </div>
+  <div class="ctas">
+    <a class="btn btn-gold" data-wa target="_blank" rel="noopener"><span data-t="wa"></span></a>
+    <a class="btn btn-line" data-mail><span data-t="mail"></span></a>
+  </div>
+  <footer data-t="place"></footer>
+</section>
+
+<div class="chrome" aria-hidden="true">
+  <button data-v="A" class="on">A · Minimal</button><button data-v="B">B · Editorial</button><button data-v="C">C · Glass ring</button>
+  <span class="sep"></span>
+  <button data-l="en" class="on">EN</button><button data-l="ar">AR</button><button data-l="fr">FR</button>
+</div>
+
+<script>
+const T = {
+  en: { slogan:"We make your videos remembered.", wa:"WhatsApp us", mail:"Email us", place:"Dubai, UAE",
+        waText:"Hi Mansouri Media, I'd like to talk about a video project.", subject:"Video project enquiry" },
+  ar: { slogan:"نجعل فيديوهاتك لا تُنسى.", wa:"تواصل عبر واتساب", mail:"راسلنا بالبريد", place:"دبي، الإمارات العربية المتحدة",
+        waText:"مرحباً Mansouri Media، أود التحدث عن مشروع فيديو.", subject:"استفسار عن مشروع فيديو" },
+  fr: { slogan:"Nous rendons vos vidéos inoubliables.", wa:"Écrivez-nous sur WhatsApp", mail:"Écrivez-nous", place:"Dubaï, Émirats arabes unis",
+        waText:"Bonjour Mansouri Media, j'aimerais parler d'un projet vidéo.", subject:"Demande de projet vidéo" },
+};
+const NAMES = { en:"EN", ar:"العربية", fr:"FR" };
+function setLang(l){
+  const t=T[l]; document.documentElement.lang=l; document.documentElement.dir = l==="ar"?"rtl":"ltr";
+  document.querySelectorAll("[data-t]").forEach(e=>e.textContent=t[e.dataset.t]);
+  document.querySelectorAll("[data-wa]").forEach(a=>a.href="https://wa.me/971505085753?text="+encodeURIComponent(t.waText));
+  document.querySelectorAll("[data-mail]").forEach(a=>a.href="mailto:houssemansouri96@gmail.com?subject="+encodeURIComponent(t.subject));
+  document.querySelectorAll(".lang").forEach(n=>n.innerHTML=Object.keys(NAMES).map(k=>`<a href="#" data-l2="${k}" class="${k===l?"on":""}">${NAMES[k]}</a>`).join(""));
+  document.querySelectorAll("[data-l]").forEach(b=>b.classList.toggle("on",b.dataset.l===l));
+}
+function setV(v){ document.querySelectorAll(".variant").forEach(s=>s.classList.toggle("on",s.id===v)); document.querySelectorAll("[data-v]").forEach(b=>b.classList.toggle("on",b.dataset.v===v)); }
+document.addEventListener("click",e=>{ const b=e.target.closest("[data-v],[data-l],[data-l2]"); if(!b) return;
+  if(b.dataset.v) setV(b.dataset.v); if(b.dataset.l) setLang(b.dataset.l); if(b.dataset.l2){ e.preventDefault(); setLang(b.dataset.l2);} });
+const q=new URLSearchParams(location.search); setLang(q.get("l")||"en"); setV(q.get("v")||"A");
+if(q.has("clean")) document.querySelector(".chrome").remove();
+</script>
+</body>
+</html>
