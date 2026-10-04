@@ -82,7 +82,10 @@ mode_media() {
     eq "media env marker" "$(curl -s --path-as-is "$BASE/media/_probe/env.txt" | tr -d '\r\n')" "$ENVNAME"
   fi
   eq "media POST" "$(status $film -X POST)" 405
-  eq "media traversal" "$(status '/media/..%2F..%2Fx')" 404
+  # Cloudflare's edge may refuse the encoded traversal (400) before the Worker answers 404: refused either way.
+  local tc
+  tc=$(status '/media/..%2F..%2Fx')
+  if [ "$tc" = 400 ] || [ "$tc" = 404 ]; then pass "media traversal"; else fail "media traversal" "$tc" "400|404"; fi
 }
 
 mode_admin() {
