@@ -30,4 +30,4 @@ d. No deploy yet: the first production deploy happens when Koss imports the repo
 - GitHub app installations for Loomlyne — pending Koss.
 
 ## Koss's answer
-Pending.
+Koss: "Ship" (question form, 2026-10-04 15:40 +0400).
