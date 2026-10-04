@@ -5,7 +5,9 @@ const FILM = "/media/_probe/test-9x16.mp4";
 const POSTER = "/media/_probe/poster.webp";
 
 test.describe("media from R2 through the Worker", () => {
-  test.skip(({}, testInfo) => testInfo.project.name !== "desktop", "desktop only");
+  test.beforeEach(({}, testInfo) => {
+    test.skip(testInfo.project.name !== "desktop", "desktop only");
+  });
 
   test("Range 206 on the first and on the repeat request", async ({ request }) => {
     const head = await request.head(FILM);
