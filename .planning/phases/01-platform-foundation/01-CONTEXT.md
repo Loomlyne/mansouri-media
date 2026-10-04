@@ -30,7 +30,7 @@ Covers PLAT-01..05, **amended** by this discussion (see D-01..D-04): the domain 
 
 ### Code and deploys
 - **D-08:** Repo is **public on GitHub: `Loomlyne/mansouri-media`** (create with the `gh` CLI, logged in as Loomlyne). Never commit `_source/` (Houssem's Drive: celebrity photos, CV with home address), `CLAUDE.local.md`, `.dev.vars`, `.env*` or any secret. Account ID in `wrangler.jsonc` is acceptable (not a secret).
-- **D-09:** **Deploys by Cloudflare Workers Builds on push to `main`** (GitHub connected to the "Houssam Portfolio" account). Pushing `main` = shipping: only the control session pushes `main`, and only after Koss's Ship answer. Planning-only pushes are labelled as planning notes.
+- **D-09 (amended 2026-10-04 by Koss):** deploys are run by the **control session** (`opennextjs-cloudflare build`, then `cf-guard` + `opennextjs-cloudflare deploy` with `HOME=/Users/koss/.mansouri-cloudflare`) after Koss's Ship; Workers Builds / GitHub auto-build is **not connected** (Koss could not check the GitHub app; he chose direct deploys). Original text: **Deploys by Cloudflare Workers Builds on push to `main`** (GitHub connected to the "Houssam Portfolio" account). Pushing `main` = shipping: only the control session pushes `main`, and only after Koss's Ship answer. Planning-only pushes are labelled as planning notes.
 - **D-10:** **Branch previews are public** (Workers Builds preview URLs, no Access). Consequences the plan must honour: previews bind to the preview D1/R2, never production; `/admin` and admin APIs on a preview refuse every request without a valid Access JWT (so admin is unusable there, which is safe).
 
 ### Platform limits
