@@ -16,6 +16,7 @@
 ### Carousel (CARO)
 
 - [ ] **CARO-01**: Visitor sees the liquid-glass carousel of Houssem's work on the home page, recoloured to his brand: white canvas, plum text, gold glass ring
+  - Planning note (2026-10-04, no code, no deploy): per Koss's D-11 (phase 2), the gated lab route `/[locale]/carousel` stands in for "the home page" until real films exist and a later, separate Ship switches the live home; phase 2 proves CARO-01…08 and PLAY-01…03 on that route.
 - [ ] **CARO-02**: Each panel keeps its film's real shape (9:16, 4:5, 1:1, 16:9) — no crop, no stretch — and a row with only 2–3 films still fills the screen
 - [ ] **CARO-03**: Visitor can browse by wheel, drag, flick and swipe; the row settles on a panel; the counter and the client/title text follow the centred panel
 - [ ] **CARO-04**: Visitor can filter the work by industry (All / Fashion / Beauty & clinics / Real estate / Products / Ads / Content); a filter with no films is not shown

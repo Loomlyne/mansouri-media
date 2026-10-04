@@ -581,14 +581,14 @@ if (LAB.test(url.pathname) && (env as { CAROUSEL_LAB?: string }).CAROUSEL_LAB !=
 | A9 | Shortened/skip-on-revisit entry animation is acceptable | E18 | Feel decision for Koss at UAT |
 | A10 | Desktop `continuous: true` render (shimmer always alive) is acceptable for power | E14 | Laptop fans; can switch to idle-stop with a slow shimmer |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **D-02 gate shape.** What we know: option A is static and fail-closed, and the cache paths are unreachable (1042). What is unclear: Koss has not chosen. Recommendation: put option A in the plan for his signature.
-2. **Real-device coverage.** What we know: Koss has an iPhone (Hermes/UAT history). What is unclear: whether a mid-range Android (Mali/Adreno 6xx class) is available. Recommendation: ask Koss. Without one, the Android tier thresholds stay MEDIUM until launch UAT (phase 6).
-3. **Wheel hand-off when sections exist below (phase 4).** Phase 2's stage fills the page, so there is no conflict now. Record it as a phase 4 design item, not phase 2 work.
-4. **Language links on the lab page.** D-06 allows three if the page supports them. Recommendation: render `/en|ar|fr/carousel`, with chips and aria strings in all three message files (AR chips from sketch s7; FR drafted by Claude; both pending Houssem's review as in phase 1 D-07). All links resolve, so there are no dead links.
-5. **Who runs preview deploys for phone UAT.** 01-07 shows `wr.sh preview --name …` works from a worktree and touches no production data. Whether a work session may run it, or only the control session, is a control-rule question for Koss/plan.
-6. **Entry animation length and filter transition feel.** Discretion, but it is a visible-feel item: show Koss at UAT.
+1. **D-02 gate shape.** RESOLVED: D-11 (hidden lab route, Worker 404 unless `CAROUSEL_LAB=on`). What we know: option A is static and fail-closed, and the cache paths are unreachable (1042). What is unclear: Koss has not chosen. Recommendation: put option A in the plan for his signature.
+2. **Real-device coverage.** RESOLVED: D-12 (Koss's iPhone incl. Low Power Mode, a mid-range Android, Houssem's phone). What we know: Koss has an iPhone (Hermes/UAT history). What is unclear: whether a mid-range Android (Mali/Adreno 6xx class) is available. Recommendation: ask Koss. Without one, the Android tier thresholds stay MEDIUM until launch UAT (phase 6).
+3. **Wheel hand-off when sections exist below (phase 4).** RESOLVED: deferred to phase 4 (design item there, no phase-2 work). Phase 2's stage fills the page, so there is no conflict now. Record it as a phase 4 design item, not phase 2 work.
+4. **Language links on the lab page.** RESOLVED: D-14 (EN · العربية · FR links on the lab route). D-06 allows three if the page supports them. Recommendation: render `/en|ar|fr/carousel`, with chips and aria strings in all three message files (AR chips from sketch s7; FR drafted by Claude; both pending Houssem's review as in phase 1 D-07). All links resolve, so there are no dead links.
+5. **Who runs preview deploys for phone UAT.** RESOLVED: D-15 (control session only). 01-07 shows `wr.sh preview --name …` works from a worktree and touches no production data. Whether a work session may run it, or only the control session, is a control-rule question for Koss/plan.
+6. **Entry animation length and filter transition feel.** RESOLVED: shown to Koss at UAT step 12 (plan 02-11 Task 3). Discretion, but it is a visible-feel item: show Koss at UAT.
 
 ## Environment Availability
 

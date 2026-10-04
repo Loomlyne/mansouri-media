@@ -46,7 +46,7 @@ These are inputs only Houssem or Koss can give. Each blocks a named phase; none 
 
 | # | Item | Owner | Blocks |
 |---|------|-------|--------|
-| 1 | 7/12 | In Progress|  |
+| 1 | Houssem's Cloudflare account "Houssam Portfolio" + separate wrangler login (done 2026-10-03); workers.dev subdomain `mansourimedia` (done 2026-10-04); domain mansourimedia.com deferred | Koss | done for Phase 1; domain before launch if possible |
 | 2 | Sending domain mansourimedia.com added and verified in Koss's Resend account (DNS records on Houssem's zone) | Koss | Phase 5 emails |
 | 3 | Houssem's Stripe account and his UAE eligibility (trade licence / business) | Houssem | Phase 7 |
 | 4 | Film source files (web-ready MP4s) and which Vimeo films go in v1, incl. private folders | Houssem | Phase 2 real data, Phase 3 uploads |
@@ -140,7 +140,50 @@ Plans:
   4. Tapping a panel opens the focus view and the film plays at once at full screen height; if the browser blocks it (iPhone Low Power Mode) a working play button appears; sound, next/previous and close by Close, Esc, swipe down or the back button all work
   5. Screen readers announce the centred film, the films exist as a real HTML list in the page source, and the carousel recovers after a dropped WebGL context and frees the GPU when the page is left
 
-**Plans**: TBD
+**Plans**: 12 plans (waves 1-9; carousel lives only at the gated /[locale]/carousel lab route, D-11)
+
+> Planning note (no code, no deploy): per Koss's D-11, the gated lab route `/[locale]/carousel` stands in for "the home page" in success criterion 1 (and CARO-01) until real films exist and a later, separate Ship switches the live home to the carousel. Phase 2's proofs run on that route (evidence map in 02-11).
+
+Plans:
+**Wave 1**
+
+- [ ] 02-01-PLAN.md — Lab gate: /xx/carousel 404 on production unless CAROUSEL_LAB=on (previews + local only); verify-live lab mode incl. prerendered cache paths
+- [ ] 02-02-PLAN.md — WorkItem contract, 17 generated test films in local R2, lab page with the server-rendered film list (EN/AR/FR)
+- [ ] 02-03-PLAN.md — Geometry + tier modules (unit-tested) and the engine port: gold, tiered, RTL flag, clean destroy, MIT kept
+
+**Wave 2**
+
+- [ ] 02-04-PLAN.md — Host on the lab page: gold glass carousel browses by wheel/drag/flick on desktop and phones (browse e2e)
+- [ ] 02-05-PLAN.md — Focus player from the film list: plays with sound, blocked ▶, mute, next/prev, swipe, Esc/Close/Back
+
+**Wave 3**
+
+- [ ] 02-06-PLAN.md — Tap a panel → film grows out of it and plays; carousel stays in step
+
+**Wave 4**
+
+- [ ] 02-07-PLAN.md — Industry filter logic + chip bar, setItems + filtered playlist, phone touch with page scroll, render on demand
+
+**Wave 5**
+
+- [ ] 02-08-PLAN.md — Poster grid fallback, FPS probe/low tier, reduced-motion live switch, context-loss recovery
+
+**Wave 6**
+
+- [ ] 02-09-PLAN.md — Keyboard, screen-reader announcements, Arabic mirror
+
+**Wave 7**
+
+- [ ] 02-10-PLAN.md — Signed-screen comparison of s3–s6 against Koss's shots (tolerance only with his word)
+
+**Wave 8**
+
+- [ ] 02-11-PLAN.md — Full proof + evidence map, control-session preview deploy, Koss's real-device UAT
+
+**Wave 9**
+
+- [ ] 02-12-PLAN.md — Ship gate (Koss's answer; phase-1 precondition; one checked squash commit; production keeps the lab closed)
+
 **UI hint**: yes
 
 ### Phase 3: Content Model and Admin Media
@@ -231,8 +274,8 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Platform Foundation | 0/10 | Planned | - |
-| 2. Carousel and Film Playback | 0/TBD | Not started | - |
+| 1. Platform Foundation | 7/12 | In Progress | - |
+| 2. Carousel and Film Playback | 0/12 | Planned | - |
 | 3. Content Model and Admin Media | 0/TBD | Not started | - |
 | 4. Site Sections and Languages | 0/TBD | Not started | - |
 | 5. Booking | 0/TBD | Not started | - |
