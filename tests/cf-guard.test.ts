@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-// @ts-expect-error plain ESM script without types
 import { evaluateGuard, EXPECTED_ACCOUNT_ID, EXPECTED_HOME } from "../scripts/cf-guard.mjs";
 
 const OK_CFG = `{ "account_id": "${EXPECTED_ACCOUNT_ID}" }`;

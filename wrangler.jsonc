@@ -14,5 +14,28 @@
   "observability": {
     "enabled": true,
     "head_sampling_rate": 1
+  },
+  "vars": { "APP_ENV": "production" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "mansourimedia-db",
+      "database_id": "82b76166-bcd3-4f51-a913-e58937d73a97",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [{ "binding": "MEDIA", "bucket_name": "mansourimedia-media" }],
+  // Preview Workers do not inherit bindings or vars: everything the Worker reads must be repeated here (D-10).
+  "previews": {
+    "vars": { "APP_ENV": "preview" },
+    "d1_databases": [
+      {
+        "binding": "DB",
+        "database_name": "mansourimedia-db-preview",
+        "database_id": "c099e4a8-0d11-41e7-a7c4-d16e54c5ae57",
+        "migrations_dir": "migrations"
+      }
+    ],
+    "r2_buckets": [{ "binding": "MEDIA", "bucket_name": "mansourimedia-media-preview" }]
   }
 }

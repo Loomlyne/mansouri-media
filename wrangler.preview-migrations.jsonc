@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mansourimedia",
+  "account_id": "1c850e50f5cbd5777f020315ccc72718",
+  "compatibility_date": "2026-10-03",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "mansourimedia-db-preview",
+      "database_id": "c099e4a8-0d11-41e7-a7c4-d16e54c5ae57",
+      "migrations_dir": "migrations"
+    }
+  ]
+}
