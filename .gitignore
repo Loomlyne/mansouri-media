@@ -13,3 +13,4 @@ test-results/
 .probe/
 tsconfig.tsbuildinfo
 next-env.d.ts
+.claude/worktrees/
