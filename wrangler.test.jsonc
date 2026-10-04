@@ -1,6 +1,7 @@
 {
   "name": "mansourimedia-test",
-  "compatibility_date": "2026-10-03",
+  // The test pool's bundled workerd supports dates up to 2026-08-22 only.
+  "compatibility_date": "2026-08-22",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "vars": { "APP_ENV": "test" },
   "d1_databases": [
