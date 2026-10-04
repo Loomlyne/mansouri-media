@@ -3,6 +3,7 @@
 // @ts-ignore generated at build time
 import { default as openNext } from "./.open-next/worker.js";
 import { pickLocale } from "./lib/i18n/negotiate";
+import { serveMedia } from "./lib/media/serve";
 
 function withSecurityHeaders(response: Response): Response {
   const res = new Response(response.body, response);
@@ -25,6 +26,9 @@ export default {
           "Cache-Control": "no-store",
         },
       });
+    }
+    if (url.pathname.startsWith("/media/")) {
+      return serveMedia(request, env.MEDIA, url.pathname.slice("/media/".length));
     }
     return withSecurityHeaders(await openNext.fetch(request, env, ctx));
   },
