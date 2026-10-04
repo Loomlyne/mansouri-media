@@ -46,7 +46,7 @@ These are inputs only Houssem or Koss can give. Each blocks a named phase; none 
 
 | # | Item | Owner | Blocks |
 |---|------|-------|--------|
-| 1 | 1/12 | In Progress|  |
+| 1 | 2/12 | In Progress|  |
 | 2 | Sending domain mansourimedia.com added and verified in Koss's Resend account (DNS records on Houssem's zone) | Koss | Phase 5 emails |
 | 3 | Houssem's Stripe account and his UAE eligibility (trade licence / business) | Houssem | Phase 7 |
 | 4 | Film source files (web-ready MP4s) and which Vimeo films go in v1, incl. private folders | Houssem | Phase 2 real data, Phase 3 uploads |
@@ -74,7 +74,7 @@ These are inputs only Houssem or Koss can give. Each blocks a named phase; none 
   4. /admin asks for Access on the workers.dev address and is unreachable without a valid Access token from any URL, including public branch previews
   5. The first deploy's measured CPU time per request is recorded and stays under the Free plan limit
 
-**Plans:** 1/12 plans executed
+**Plans:** 2/12 plans executed
 
 Plans:
 **Wave 1**
@@ -84,7 +84,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-02-PLAN.md — Holding page (signed variant C, EN/AR/FR), self-hosted fonts, visual match to the signed shots (or Koss's OK on the diff)
+- [x] 01-02-PLAN.md — Holding page (signed variant C, EN/AR/FR), self-hosted fonts, visual match to the signed shots (or Koss's OK on the diff)
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
