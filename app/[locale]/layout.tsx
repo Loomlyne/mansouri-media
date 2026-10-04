@@ -34,6 +34,15 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/host-grotesk/host-grotesk-latin-wght-normal.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
