@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mansouri Media — carousel sketches (phase 2)</title>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --plum:#251B26; --gold:#C48C3C; --muted:#7a6f7b; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { height:100%; }
+  body { font-family:"Host Grotesk",system-ui,sans-serif; color:var(--plum); background:#fff; -webkit-font-smoothing:antialiased; overflow:hidden; }
+  [dir=rtl] body, .rtl { font-family:"IBM Plex Sans Arabic","Host Grotesk",sans-serif; }
+  .chrome { position:fixed; z-index:99; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:4px; background:#111; color:#fff; padding:5px; border-radius:999px; font:12px/1 system-ui; }
+  .chrome button { background:transparent; color:#fff; border:0; padding:8px 11px; border-radius:999px; cursor:pointer; font:inherit; }
+  .chrome button.on { background:#fff; color:#111; }
+  .screen { display:none; position:fixed; inset:0; overflow:hidden; background:#fff; }
+  .screen.on { display:block; }
+
+  header.top { position:absolute; z-index:5; top:0; left:0; right:0; display:flex; justify-content:space-between; align-items:center; padding:22px 32px; }
+  header.top img { width:118px; }
+  .lang { display:flex; gap:14px; font-size:13px; color:var(--muted); }
+  .lang .on { color:var(--plum); }
+
+  /* row */
+  .row { position:absolute; left:50%; top:50%; display:flex; gap:12px; align-items:center; transform:translate(-50%,-50%); }
+  .row img { height:450px; display:block; border-radius:2px; }
+  .row img.c { outline:0; }
+  .lens { position:absolute; left:50%; top:50%; width:113vh; height:200vh; transform:translate(-50%,-50%) rotate(65deg); border-radius:50%; pointer-events:none;
+    box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.85), inset 0 0 0 7px rgba(196,140,60,.32), inset 0 0 60px rgba(196,140,60,.18);
+    backdrop-filter: saturate(1.15); }
+  .lens-note { position:absolute; right:32px; top:70px; font-size:11px; color:var(--muted); max-width:220px; text-align:right; }
+  .meta { position:absolute; left:50%; top:15%; transform:translateX(-50%); text-align:center; z-index:4; }
+  .meta .client { font-size:16px; font-weight:500; }
+  .meta .title { font-size:14px; color:var(--muted); margin-top:2px; }
+  .bottom { position:absolute; left:0; right:0; bottom:9%; display:flex; flex-direction:column; align-items:center; gap:16px; z-index:4; }
+  .counter { font-size:14px; letter-spacing:.04em; }
+  .chips { display:flex; gap:8px; flex-wrap:nowrap; overflow-x:auto; max-width:100%; padding:0 20px; scrollbar-width:none; }
+  .chip { flex:none; height:34px; padding:0 15px; border-radius:999px; border:1px solid #e3dde3; font-size:13px; display:flex; align-items:center; color:var(--plum); background:#fff; }
+  .chip.on { background:var(--plum); color:#fff; border-color:var(--plum); }
+  .cursor { position:absolute; z-index:6; left:calc(50% + 70px); top:calc(50% + 40px); font-size:13px; color:#fff; mix-blend-mode:exclusion; }
+
+  /* phone frame */
+  .phone { position:absolute; left:50%; top:50%; width:390px; height:844px; transform:translate(-50%,-50%) scale(var(--s,1)); border-radius:44px; overflow:hidden; box-shadow:0 0 0 10px #111, 0 30px 60px rgba(0,0,0,.25); background:#fff; }
+  .phone header.top { padding:18px 18px; }
+  .phone header.top img { width:96px; }
+  .phone .row img { height:360px; }
+  .phone .lens { width:56vh; height:110vh; }
+  .phone .meta { top:13%; }
+  .phone .bottom { bottom:7%; }
+
+  /* focus */
+  .focus { position:absolute; inset:0; background:#fff; }
+  .focus .film { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); height:calc(100% - 120px); aspect-ratio:9/16; background:#111; overflow:hidden; border-radius:2px; }
+  .focus .film img { width:100%; height:100%; object-fit:cover; opacity:.92; }
+  .focus .ftop { position:absolute; top:22px; left:0; right:0; text-align:center; z-index:3; }
+  .focus .close { position:absolute; top:22px; right:32px; font-size:14px; z-index:3; }
+  .focus .mute { position:absolute; right:12px; bottom:22px; width:34px; height:34px; border-radius:50%; background:rgba(0,0,0,.45); display:grid; place-items:center; color:#fff; font-size:15px; }
+  .focus .prog { position:absolute; left:12px; right:56px; bottom:38px; height:3px; background:rgba(255,255,255,.28); border-radius:2px; }
+  .focus .prog i { position:absolute; inset:0 auto 0 0; width:38%; background:var(--gold); border-radius:2px; }
+  .focus .arrow { position:absolute; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; border:1px solid #e3dde3; display:grid; place-items:center; font-size:20px; z-index:3; background:#fff; }
+  .focus .arrow.l { left:32px; } .focus .arrow.r { right:32px; }
+  .phone .focus .film { height:100%; width:100%; aspect-ratio:auto; border-radius:0; }
+  .phone .focus .ftop { color:#fff; top:56px; }
+  .phone .focus .ftop .title { color:rgba(255,255,255,.75); }
+  .phone .focus .close { color:#fff; top:56px; right:18px; }
+  .swipehint { position:absolute; left:0; right:0; bottom:70px; text-align:center; color:rgba(255,255,255,.8); font-size:12px; }
+  .blocked { position:absolute; inset:0; display:grid; place-items:center; }
+  .blocked span { width:84px; height:84px; border-radius:50%; background:rgba(255,255,255,.92); display:grid; place-items:center; font-size:28px; color:var(--plum); }
+
+  /* grid fallback */
+  .grid { position:absolute; top:70px; bottom:0; left:0; right:0; overflow:auto; padding:10px 14px 120px; display:grid; grid-template-columns:1fr 1fr; gap:10px; align-content:start; }
+  .grid figure img { width:100%; display:block; border-radius:2px; }
+  .grid figcaption { font-size:12px; margin-top:6px; } .grid figcaption small { display:block; color:var(--muted); }
+  .note { position:absolute; left:32px; bottom:70px; font-size:11px; color:var(--muted); max-width:300px; }
+</style>
+</head>
+<body>
+
+<!-- 1 desktop home -->
+<section class="screen on" id="s1">
+  <header class="top"><img src="../01-holding/assets/logo-plum.png" alt="Mansouri Media"><nav class="lang"><span class="on">EN</span><span>العربية</span><span>FR</span></nav></header>
+  <div class="row" id="row1"></div>
+  <div class="lens"></div>
+  <p class="lens-note">Gold glass lens = live WebGL shader (dispersion, shimmer ring); drawn here only as an outline.</p>
+  <div class="meta"><div class="client">Ooredoo</div><div class="title">Social media ad</div></div>
+  <div class="cursor">View</div>
+  <div class="bottom"><div class="counter">05/17</div><div class="chips" id="chips1"></div></div>
+</section>
+
+<!-- 2 phone home -->
+<section class="screen" id="s2"><div class="phone" id="ph2">
+  <header class="top"><img src="../01-holding/assets/logo-plum.png" alt="Mansouri Media"><nav class="lang"><span class="on">EN</span><span>ع</span><span>FR</span></nav></header>
+  <div class="row" id="row2"></div>
+  <div class="lens"></div>
+  <div class="meta"><div class="client">Ooredoo</div><div class="title">Social media ad</div></div>
+  <div class="bottom"><div class="counter">05/17</div><div class="chips" id="chips2" style="justify-content:flex-start"></div></div>
+</div></section>
+
+<!-- 3 desktop focus -->
+<section class="screen" id="s3"><div class="focus">
+  <div class="ftop"><div style="font-weight:500">Ooredoo</div><div class="title" style="color:var(--muted);font-size:14px">Social media ad</div></div>
+  <div class="close">Close</div>
+  <div class="arrow l">←</div><div class="arrow r">→</div>
+  <div class="film"><img src="assets/p1.webp" alt=""><div class="prog"><i></i></div><div class="mute">🔊</div></div>
+  <p class="note">Film plays with sound in a normal video element over the canvas. ← → and arrow keys = previous / next. Esc or Close = back to the carousel.</p>
+</div></section>
+
+<!-- 4 phone focus (reels) -->
+<section class="screen" id="s4"><div class="phone" id="ph4"><div class="focus">
+  <div class="film"><img src="assets/p6.webp" alt=""><div class="prog" style="bottom:40px"><i></i></div><div class="mute" style="bottom:26px">🔊</div></div>
+  <div class="ftop"><div style="font-weight:500">Universal</div><div class="title" style="font-size:13px">Minions premiere</div></div>
+  <div class="close">Close</div>
+  <div class="swipehint">Swipe up for next · down for previous</div>
+</div></div></section>
+
+<!-- 5 phone focus blocked autoplay -->
+<section class="screen" id="s5"><div class="phone" id="ph5"><div class="focus">
+  <div class="film"><img src="assets/p6.webp" alt="" style="filter:brightness(.7)"></div>
+  <div class="ftop"><div style="font-weight:500">Universal</div><div class="title" style="font-size:13px">Minions premiere</div></div>
+  <div class="close">Close</div>
+  <div class="blocked"><span>▶</span></div>
+  <div class="swipehint">Low Power Mode blocked autoplay — tap to play with sound</div>
+</div></div></section>
+
+<!-- 6 phone poster grid fallback -->
+<section class="screen" id="s6"><div class="phone" id="ph6">
+  <header class="top"><img src="../01-holding/assets/logo-plum.png" alt="Mansouri Media"><nav class="lang"><span class="on">EN</span><span>ع</span><span>FR</span></nav></header>
+  <div class="grid" id="grid6"></div>
+  <div class="bottom" style="bottom:0;padding:14px 0 18px;background:linear-gradient(transparent,#fff 30%)"><div class="chips" id="chips6" style="justify-content:flex-start"></div></div>
+</div></section>
+
+<!-- 7 desktop arabic mirrored -->
+<section class="screen rtl" id="s7" dir="rtl">
+  <header class="top"><img src="../01-holding/assets/logo-plum.png" alt="Mansouri Media"><nav class="lang"><span>EN</span><span class="on">العربية</span><span>FR</span></nav></header>
+  <div class="row" id="row7" style="flex-direction:row"></div>
+  <div class="lens"></div>
+  <div class="meta"><div class="client">Ooredoo</div><div class="title">إعلان لوسائل التواصل</div></div>
+  <div class="bottom"><div class="counter">05/17</div><div class="chips" id="chips7"></div></div>
+  <p class="note" style="left:auto;right:32px;text-align:right">Arabic: first film on the right, “next” moves left, ← → keys swap. Drag still follows the finger.</p>
+</section>
+
+<div class="chrome">
+  <button data-s="s1" class="on">1 Desktop</button><button data-s="s2">2 Phone</button><button data-s="s3">3 Film · desktop</button><button data-s="s4">4 Film · phone</button><button data-s="s5">5 Blocked</button><button data-s="s6">6 No-3D grid</button><button data-s="s7">7 Arabic</button>
+</div>
+
+<script>
+const P = ["p2","p8","p3","p5","p1","p7","p4","p6","p9"]; // centre = p1 (Ooredoo); 4:5, 1:1 left, 16:9 right
+const FILMS = [["Huawei","Watch 5"],["David Beckham Perfumes","Fragrance film"],["Mansouri Media","Content History — Tunisia"],["Personal","Oman Trip"],["Ooredoo","Social media ad"],["Outika","Eyewear"],["Joliesse","Summer 2024"],["Universal","Minions premiere"],["Cider","x Sarah Waraa"]];
+const CH = ["All","Fashion","Beauty & clinics","Real estate","Products","Ads","Content"];
+const CH_AR = ["الكل","أزياء","تجميل وعيادات","عقارات","منتجات","إعلانات","محتوى"];
+function fill(id, list){ const r=document.getElementById(id); r.innerHTML = list.map(p=>`<img src="assets/${p}.webp" alt="">`).join(""); }
+fill("row1",P); fill("row2",P);
+fill("row7",P); // dir=rtl mirrors the row: Huawei (first) sits on the right
+function chips(id, l){ document.getElementById(id).innerHTML = l.map((c,i)=>`<span class="chip ${i==0?"on":""}">${c}</span>`).join(""); }
+chips("chips1",CH); chips("chips2",CH); chips("chips6",CH); chips("chips7",CH_AR);
+document.getElementById("grid6").innerHTML = P.map((p,i)=>`<figure><img src="assets/${p}.webp" alt=""><figcaption>${FILMS[i][0]}<small>${FILMS[i][1]}</small></figcaption></figure>`).join("");
+function centre(){ document.querySelectorAll('.row').forEach(r=>{ const imgs=[...r.querySelectorAll('img')]; const c=imgs[4]; if(!c||!c.complete) return; r.style.transform='translateY(-50%)'; r.style.left='0px'; const host=r.parentElement.getBoundingClientRect(); const cr=c.getBoundingClientRect(); const rr=r.getBoundingClientRect(); const want=host.width/2 - ((cr.left-rr.left)+cr.width/2); r.style.left=want+'px'; }); }
+addEventListener('load',()=>setTimeout(centre,50));
+function fit(){ const s=Math.min(1,(innerHeight-90)/844); document.querySelectorAll(".phone").forEach(p=>p.style.setProperty("--s",s)); }
+fit(); addEventListener("resize",fit);
+function go(s){ document.querySelectorAll(".screen").forEach(x=>x.classList.toggle("on",x.id===s)); setTimeout(centre,30); document.querySelectorAll("[data-s]").forEach(b=>b.classList.toggle("on",b.dataset.s===s)); }
+document.addEventListener("click",e=>{const b=e.target.closest("[data-s]"); if(b) go(b.dataset.s);});
+const q=new URLSearchParams(location.search); go(q.get("s")||"s1"); if(q.has("clean")) document.querySelector(".chrome").remove();
+</script>
+</body>
+</html>
