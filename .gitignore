@@ -11,3 +11,5 @@ CLAUDE.local.md
 playwright-report/
 test-results/
 .probe/
+tsconfig.tsbuildinfo
+next-env.d.ts
