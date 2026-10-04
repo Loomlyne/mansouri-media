@@ -104,3 +104,11 @@ A visitor on a phone or desktop browses Houssem's films in the liquid-glass caro
 
 *Phase: 02-carousel-and-film-playback*
 *Context gathered: 2026-10-04*
+
+## Decisions after research (Koss, 2026-10-04)
+- **D-11:** Live safety = **hidden test route**: carousel at `/[locale]/carousel`; `worker.ts` returns 404 there unless `CAROUSEL_LAB=on`; only local + preview set it. Live home stays the holding page. Seed list server-only.
+- **D-12:** Real-device UAT on **Koss's iPhone (incl. Low Power Mode), a mid-range Android, and Houssem's phone**.
+- **D-13:** Phone film view: vertical films **fill the screen** (cover; thin edge crop on taller phones allowed).
+- **D-14:** Test route shows **EN · العربية · FR** links; Arabic mirrors the row; AR/FR copy pending Houssem's review.
+- **D-15:** Preview deploys for phone testing are run by the control session only.
+- Deferred: wheel → page-scroll handover when sections are added below the carousel (phase 4).
