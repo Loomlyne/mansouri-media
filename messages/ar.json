@@ -1,5 +1,14 @@
 {
   "Meta": {
-    "title": "Mansouri Media"
+    "title": "Mansouri Media",
+    "description": "نجعل فيديوهاتك لا تُنسى."
+  },
+  "Holding": {
+    "slogan": "نجعل فيديوهاتك لا تُنسى.",
+    "wa": "تواصل عبر واتساب",
+    "mail": "راسلنا بالبريد",
+    "place": "دبي، الإمارات العربية المتحدة",
+    "waText": "مرحباً Mansouri Media، أود التحدث عن مشروع فيديو.",
+    "subject": "استفسار عن مشروع فيديو"
   }
 }

@@ -19,7 +19,7 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
   const t = await getTranslations({ locale, namespace: "Meta" });
-  return { title: t("title") };
+  return { title: t("title"), description: t("description") };
 }
 
 export default async function LocaleLayout({

@@ -1,5 +1,14 @@
 {
   "Meta": {
-    "title": "Mansouri Media"
+    "title": "Mansouri Media",
+    "description": "Nous rendons vos vidéos inoubliables."
+  },
+  "Holding": {
+    "slogan": "Nous rendons vos vidéos inoubliables.",
+    "wa": "Écrivez-nous sur WhatsApp",
+    "mail": "Écrivez-nous",
+    "place": "Dubaï, Émirats arabes unis",
+    "waText": "Bonjour Mansouri Media, j'aimerais parler d'un projet vidéo.",
+    "subject": "Demande de projet vidéo"
   }
 }
