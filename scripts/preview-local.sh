@@ -8,5 +8,7 @@ if [ -n "$(lsof -nP -iTCP:8791 -sTCP:LISTEN -t)" ]; then
   exit 1
 fi
 
+HOME=/Users/koss/.mansouri-cloudflare node scripts/cf-guard.mjs
+
 ./node_modules/.bin/opennextjs-cloudflare build
 HOME=/Users/koss/.mansouri-cloudflare exec ./node_modules/.bin/opennextjs-cloudflare preview --port 8791
